@@ -1,0 +1,18 @@
+package tp1;
+
+import java.util.Scanner;
+
+public class ejercicio01 {
+	
+	private static Scanner input = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		
+		System.out.println("Ingrese un numero entero");
+		int x = input.nextInt();
+		System.out.println("Ingrese otro numero entero");
+		int y = input.nextInt();
+		System.out.println("La suma de los numeros ingresados es: " + ( x + y );
+	}
+
+}
