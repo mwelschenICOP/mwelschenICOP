@@ -6,8 +6,6 @@ public class palabras {
 	private static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		char s = 's';
-		int vs = s;
 		char letra;
 
 		System.out.println("Ingrese palabra");
@@ -23,19 +21,14 @@ public class palabras {
 			
 			}
 			default:
-				if (letra>65 || letra <90 || letra>97 || letra<122) {
+				if (letra>64 && letra <91 || letra>96 && letra<123) {
 					System.out.println("Es valido");
 					
 					}
 				else {
 					System.out.println("No es valido");
 				}
-				;
-			
-	
-
 	}
-
 	}
 }
 	

@@ -14,10 +14,8 @@ public class array1 {
 	}
 	}
 	public static void main(String[] args) {
-		
 		String[] Alumnos = new String[10];
 		System.out.println("ingrese los nombres de cada alumno por separado");
-		
 		llenarVector(Alumnos);
 		mostrarVector(Alumnos);
 	}
