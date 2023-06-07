@@ -13,7 +13,7 @@ public class Principal {
 		System.out.println("Ingrese el autor");
 		String autor=input.next();
 		System.out.println("Ingrese el numero de paginas");
-		int numPag = input.nextInt();
+		int numPag=input.nextInt();
 		
 		Libro unLibro= new Libro(isbn, titulo, autor, numPag);
 		unLibro.setIsbn(isbn);
