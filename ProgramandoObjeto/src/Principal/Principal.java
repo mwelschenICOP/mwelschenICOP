@@ -45,7 +45,21 @@ public class Principal {
 			unaCircunferencia.crearCircunferencia(r);
 			unaCircunferencia.area();
 			unaCircunferencia.perimetro();
-			
+		case 3:
+			System.out.println("Ingrese dos numeros enteros para operar");
+			Operacion unNumero=new Operacion();
+			unNumero.crearOperacion(0,0);
+			System.out.println("La suma de los numeros es: "+unNumero.sumar());
+			System.out.println("La resta de los numeros es: "+unNumero.restar());
+			System.out.println("La multiplicacion de los numeros es: "+unNumero.multiplicar());
+			System.out.println("La division de los numeros es: "+unNumero.dividir());
+		case 4:
+			System.out.println("Ingrese primero la base del rectangulo, luego la altura");
+			Rectangulo unRectangulo=new Rectangulo();
+			unRectangulo.crearRectangulo(0, 0);
+			unRectangulo.calcularSuperficie();
+			unRectangulo.calcularPerimetro();
+			unRectangulo.dibujarRectangulo();
 		}
 		}while(num!=0);
 	}
