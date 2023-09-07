@@ -1,0 +1,11 @@
+C:\TPprogramacion2\TPLibreria\src\main\java\com\mycompany\tplibreria\TPLibreria.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\exceptions\NonexistentEntityException.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\EditorialJpaController.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\exceptions\IllegalOrphanException.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Entidades\Autor.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\LibroJpaController.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Entidades\Libro.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\AutorJpaController.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Entidades\Editorial.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\ControladoraPersistencia.java
+C:\TPprogramacion2\TPLibreria\src\main\java\Servicios\exceptions\PreexistingEntityException.java

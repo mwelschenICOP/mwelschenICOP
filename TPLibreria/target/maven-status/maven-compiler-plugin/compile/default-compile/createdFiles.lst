@@ -1,0 +1,14 @@
+Servicios\LibroJpaController.class
+Entidades\Autor.class
+Servicios\exceptions\IllegalOrphanException.class
+Servicios\EditorialJpaController.class
+Servicios\ControladoraPersistencia.class
+Entidades\Libro.class
+Servicios\exceptions\NonexistentEntityException.class
+Servicios\exceptions\PreexistingEntityException.class
+Entidades\Autor_.class
+Entidades\Editorial_.class
+Entidades\Editorial.class
+com\mycompany\tplibreria\TPLibreria.class
+Entidades\Libro_.class
+Servicios\AutorJpaController.class
