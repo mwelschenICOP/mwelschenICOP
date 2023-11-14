@@ -20,7 +20,7 @@ public class Poliza {
 	private Cliente cliente;
 	private ArrayList<Cuota> listaCuota;
 	private TipoCobertura tipoCobertura;
-	
+
 	public Poliza(Vehiculo vehiculo, Cliente cliente) {
 		super();
 		this.numPoliza = autoinc++;
@@ -67,7 +67,7 @@ public class Poliza {
 		}else if(pago==3){
 			this.tipoCobertura=TipoCobertura.Parcial;
 		}else {System.out.println("Valor incorrecto, se asigno Parcial por defecto");
-			this.tipoCobertura=TipoCobertura.Parcial;
+		this.tipoCobertura=TipoCobertura.Parcial;
 		}
 	}
 	public Poliza(int numPoliza, String fechaInicio, String fechaFin, int cantCuotas, FormaPago formaPagoPreferente,
