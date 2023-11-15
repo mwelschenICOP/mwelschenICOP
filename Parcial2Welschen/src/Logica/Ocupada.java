@@ -14,7 +14,6 @@ public class Ocupada implements Estado{
 		System.out.println("Mesa liberada");
 		mesa.setEstado(new Liberada());
 	}
-
 	@Override
 	public void ocupar(Mesa mesa) {
 		try {
@@ -29,12 +28,10 @@ public class Ocupada implements Estado{
 			System.out.println(e.getMessage());
 		}
 	}
-
 	@Override
 	public void reservar(Mesa mesa) {
 		System.out.println("La mesa se encuentra ocupada");
 	}
-
 	@Override
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;	

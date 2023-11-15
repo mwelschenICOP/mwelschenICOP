@@ -240,6 +240,31 @@ public class Resto {
 		listaMesas.add(mesa);
 		}
 	}
+	public void eliminarMesa() {
+		System.out.println("Ingrese el numero de mesa que quiere dar de alta (lo puede consultar en el menú): ");
+		int nro = input.nextInt();
+		int ind = -1;
+			for(int i = 0; i < listaMesas.size(); i++) {
+			    Mesa m = listaMesas.get(i);
+			    try {
+			    if(m.getNroMesa() == nro) {
+			    	ind=i;
+			    	
+			    }if (ind<0) {
+			    	System.out.println("El numero de mesa ingresado es incorrecto");
+			    	
+			    }else if(listaMesas.get(i).estadoActual()!="Reservada"){
+			    	throw new MesaException("No se puede eliminar una mesa reservada");
+			    }else {
+			    	listaMesas.remove(i);
+			    	System.out.println("Mesa eliminada correctamente");
+			    }
+			    }catch(Exception e) {
+					System.out.println(e.getMessage());
+			    }
+			}
+		}
+	
 	public void altaMesa(Resto resto) {
 		System.out.println("Ingrese el numero de mesa que quiere dar de alta (lo puede consultar en el menú): ");
 		int nro = input.nextInt();

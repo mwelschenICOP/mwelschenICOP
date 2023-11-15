@@ -32,6 +32,7 @@ public class Principal {
 						+ "9. Dar de baja una mesa\n"
 						+ "10. Reservar una mesa para hoy\n"
 						+ "11. Reservar una mesa con fecha futura\n"
+						+ "12. Eliminar una mesa\n"
 						+ "0 para salir");
 
 			 eleccion=input.nextInt();
@@ -102,7 +103,9 @@ public class Principal {
 				input.nextLine();
 				String fecha = input.nextLine();
 				resto.mostrarInfo(resto, fecha);
-				
+				break;
+			case 12:
+				resto.eliminarMesa();
 				break;
 			default:
 				System.out.println("Saliendo del sistema...");

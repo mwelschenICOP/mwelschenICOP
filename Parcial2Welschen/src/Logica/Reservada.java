@@ -2,6 +2,7 @@ package Logica;
 
 public class Reservada implements Estado{
 	private Mesa mesa;
+	
 	@Override
 	public void liberar(Mesa mesa) {
 		System.out.println("No se puede liberar una mesa reservada");
