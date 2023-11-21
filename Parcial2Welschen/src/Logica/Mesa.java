@@ -13,18 +13,27 @@ public class Mesa {
 	
 	private static Scanner input = new Scanner(System.in);
 	
+	public Mesa(int nroMesa,Estado state, int capacidad, double consumo) {
+		super();
+		this.nroMesa=nroMesa;
+		this.state=state;
+		this.capacidad=capacidad;
+		this.consumo=consumo;
+	}
+	
 	public Mesa() {
 		super();
 		contador++;
 		this.nroMesa=contador;
-		setEstado(new Liberada());
+		this.state=new Liberada();
 	}
+	
 	
 	public Mesa( int capacidad, double consumo) {
 		super();
 		contador++;
 		this.nroMesa=contador;
-		setEstado(new Liberada());
+		this.state=new Liberada();
 		this.capacidad = capacidad;
 		this.consumo = consumo;
 		this.listaReservas = new ArrayList<Reserva>();
@@ -101,5 +110,12 @@ public class Mesa {
 		return "Mesa: "+ nroMesa +", Estado: " + estadoActual() +  ", Capacidad: " + capacidad + ", Consumo:" + consumo
 				+ "\n";
 	}
+
+	public void setEstado(String string) {
+		this.estadoActual();
+		
+	}
+
+	
 	
 }

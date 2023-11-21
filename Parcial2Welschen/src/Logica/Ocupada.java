@@ -1,17 +1,17 @@
 package Logica;
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Ocupada implements Estado{
 	private Mesa mesa;
 	
-	private static Scanner input = new Scanner(System.in);
 	
 	@Override
 	public void liberar(Mesa mesa) {
-		System.out.println("Ingrese el consumo de la mesa: ");
-		double consu = input.nextDouble();
-		mesa.setConsumo(consu);
-		System.out.println("Mesa liberada");
+		String mensaje="La operacion fue realizada satisfactoriamente: "
+				+ "Mesa N° "+mesa.getNroMesa()+"\n"
+						+ "capacidad: "+mesa.getCapacidad();
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Liberada());
 	}
 	@Override
@@ -19,18 +19,23 @@ public class Ocupada implements Estado{
 		try {
 			if(mesa.estadoActual() != "Ocupada"){
 				mesa.setEstado(new Ocupada());
-				System.out.println("Puede ocupar la mesa");
+				String mensaje="La operacion fue realizada satisfactoriamente: "
+						+ "Mesa N° "+mesa.getNroMesa()+"\n"
+								+ "capacidad: "+mesa.getCapacidad();
+				JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
+				mesa.setEstado(new Liberada());
 			}	
 			else{
 				throw new MesaException("La mesa ya se encuentra ocupada");
 			}
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Estado", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	@Override
 	public void reservar(Mesa mesa) {
-		System.out.println("La mesa se encuentra ocupada");
+		String mensaje="La mesa se encuentra ocupada";
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 	}
 	@Override
 	public void setMesa(Mesa mesa) {

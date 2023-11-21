@@ -21,6 +21,16 @@ public class Reserva {
 	}
 	
 
+	public int getIdRes() {
+		return idRes;
+	}
+
+
+	public void setIdRes(int idRes) {
+		this.idRes = idRes;
+	}
+
+
 	public Reserva() {
 		super();
 		con++;
@@ -35,6 +45,9 @@ public class Reserva {
 		this.nombreApellido = nomape;
 		this.cantComensales = comen;
 	}
+
+	
+
 
 	public Date getFecha() {
 		return fecha;

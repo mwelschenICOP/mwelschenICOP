@@ -1,6 +1,5 @@
 package Logica;
 
-
 import java.util.Scanner;
 
 public class Principal {
@@ -11,14 +10,15 @@ public class Principal {
 		resto.nuevaMesa(2, 4);
 		resto.nuevaMesa(4, 4);
 		resto.nuevaMesa(6, 3);
-		/*
-		 (Quitar comentarios a esta parte, y comentar desde la linea 10 hasta la 13 para probar con el resto "Los primos") 
+	
+		// (Quitar comentarios a esta parte, y comentar desde la linea 10 hasta la 13 para probar con el resto "Los primos") 
 		 
-		 Resto resto = new Resto("Los Primos", "San Martín 1601", "Santa Fe");
+	/*	Resto resto = new Resto("Los Primos", "San Martín 1601", "Santa Fe");
 		resto.nuevaMesa(8, 5);
 		resto.nuevaMesa(4, 10);
 		resto.nuevaMesa(6, 6);
-		 */
+		*/
+		 
 		do {
 			System.out.println("Elija la opcion deseada:\n"
 						+ "1. Agregar Mesas (una o varias)\n"
@@ -103,6 +103,7 @@ public class Principal {
 				input.nextLine();
 				String fecha = input.nextLine();
 				resto.mostrarInfo(resto, fecha);
+				resto.reservarMesa(resto, fecha);
 				break;
 			case 12:
 				resto.eliminarMesa();
@@ -110,6 +111,6 @@ public class Principal {
 			default:
 				System.out.println("Saliendo del sistema...");
 			}
-			}while(eleccion!=0);		
-	}	
+			}while(eleccion!=0);	
+	}
 }

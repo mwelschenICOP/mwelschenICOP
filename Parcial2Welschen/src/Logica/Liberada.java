@@ -1,22 +1,31 @@
 package Logica;
 
+import javax.swing.JOptionPane;
+
 public class Liberada implements Estado{
 	private Mesa mesa;
 
 	@Override
 	public void liberar(Mesa mesa) {
-		System.out.println("La mesa ya se encuentra libre");
+		String mensaje="La mesa ya se encuentra liberada ";
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
 	public void ocupar(Mesa mesa) {
-		System.out.println("Puede ocupar la mesa");
+		String mensaje="La operacion fue realizada satisfactoriamente: "
+				+ "Mesa N° "+mesa.getNroMesa()+"\n"
+						+ "capacidad: "+mesa.getCapacidad();
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Ocupada());
 	}
 
 	@Override
 	public void reservar(Mesa mesa) {
-		System.out.println("Perfecto, mesa reservada");
+		String mensaje="La operacion fue realizada satisfactoriamente: "
+								+ "Mesa N° "+mesa.getNroMesa()+"\n"
+										+ "capacidad: "+mesa.getCapacidad();
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Reservada());
 	}
 

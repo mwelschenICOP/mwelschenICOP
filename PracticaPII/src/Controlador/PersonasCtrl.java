@@ -19,7 +19,7 @@ public class PersonasCtrl {
 			con = ad.abrirConexion();
 			pst = con.prepareStatement(sql);
 			pst.setString(1, per.getNombre());
-			pst.setInt(2, );
+	//pst.setInt(2, );
 			pst.execute();
 			return true;
 		} catch (SQLException e) {

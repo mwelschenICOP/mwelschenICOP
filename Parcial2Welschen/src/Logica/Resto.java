@@ -1,10 +1,15 @@
 package Logica;
 
+import java.sql.SQLException;
 import java.text.ParseException;
+import ConexionBD.MesaAD;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class Resto {
 	private static int cont = 0;
@@ -13,14 +18,13 @@ public class Resto {
 	private String calle;
 	private String ciudad;
 	private ArrayList<Mesa> listaMesas;
+	private ArrayList<Reserva> listaReservas;
+	
 	
 	private static Scanner input = new Scanner(System.in);
-	
+
 	public Resto() {
-		super();
-		cont++;
-		this.id=cont;
-		this.listaMesas = new ArrayList<Mesa>();
+		
 	}
 	public Resto(String nombre, String calle, String ciudad) {
 		super();
@@ -30,43 +34,42 @@ public class Resto {
 		this.calle = calle;
 		this.ciudad = ciudad;
 		this.listaMesas = new ArrayList<Mesa>();
+		this.listaReservas = new ArrayList<Reserva>();
 	}
-
 	public int getId() {
+		System.out.println(id);
 		return id;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getCalle() {
 		return calle;
 	}
-	
 	public void setId(int id) {
 		this.id = id;
 	}
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-
 	public String getCiudad() {
 		return ciudad;
 	}
-
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-
 	public ArrayList<Mesa> getListaMesas() {
 		return listaMesas;
 	}
-
+	public ArrayList<Reserva> getListaReservas() {
+		return listaReservas;
+	}
+	public void setListaReservas(ArrayList<Reserva> listaReservas) {
+		this.listaReservas = listaReservas;
+	}
 	public void setListaMesas(ArrayList<Mesa> listaMesas) {
 		this.listaMesas = listaMesas;
 	}
@@ -92,7 +95,7 @@ public class Resto {
 	}
 	public void mostrarMesas(Resto resto, String est, String fecha) {
 		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-		Date date=null;
+		Date date=null ;
 		try {
 			date = formatoFecha.parse(fecha);
 		} catch (ParseException e) {
@@ -131,7 +134,6 @@ public class Resto {
 		  }
 		}
 		}
-	
 	public void mostrarCapacidad(Resto resto) {
 
 		  int capacidad = 0;
@@ -301,6 +303,7 @@ public class Resto {
 		Date date = null;
 		System.out.println("Ingrese el numero de mesa que quiere reservar: ");
 		int nro = input.nextInt();
+		input.nextLine();
 		System.out.println("Ingrese su nombre y apellido:");
 		String nomape = input.nextLine();
 		System.out.println("Ingrese cantidad de comensales:");
@@ -324,5 +327,94 @@ public class Resto {
 	         }
 	         }
 	       }
+	public void guardarMesas(Resto resto) {
+		MesaAD mesaad = new MesaAD();
+		for(Mesa mesa : resto.getListaMesas()) {
+			try {
+				mesaad.guardarMesas(mesa, id);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public ArrayList<Mesa> mesasDisponibles(int cant, Date date) {
+		ArrayList<Mesa> mDispo = new ArrayList<>();
+		for (Mesa mesa : listaMesas) {
+			if(mesa.getCapacidad()>=cant) {
+				if (mesaDisponible(mesa, date)==true){
+					mDispo.add(mesa);
+				}
+			}	
+		}return mDispo;
+		
+	}
+	public boolean mesaDisponible(Mesa mesa, Date date) {
+		for (Reserva rese : listaReservas) {
+			if (rese.getFecha().equals(date) && rese.getMesa().equals(mesa)) {
+				return false;
+			}
+		}return true;
+	}
+	public ArrayList<Mesa> mesasDisponibles(int cant) {
+		ArrayList<Mesa> mDispo = new ArrayList<>();
+		for (Mesa mesa : listaMesas) {
+			if(mesa.getCapacidad()>=cant && mesa.estadoActual()=="Liberada") {
+					mDispo.add(mesa);
+			}
+		}return mDispo;
+	}
+	public Mesa getMesa(int nroMesa) {
+		Mesa m = null;
+		for (Mesa mesa : listaMesas) {
+			if(nroMesa == mesa.getNroMesa()) {
+				m=mesa;
+			}
+		}
+		 return m;
+	 }
+	public void guardarReserva(Reserva rese) {
+		this.listaReservas.add(rese);
+		
+	}
+	public ArrayList<Mesa> mesasOcupadas() {
+		ArrayList<Mesa> mOcup = new ArrayList<>();
+		for (Mesa mesa : listaMesas) {
+			if(mesa.estadoActual()=="Ocupada") {
+					mOcup.add(mesa);
+			}
+		}return mOcup;
+	}
+	public ArrayList<Mesa> mesasLiberadas() {
+		ArrayList<Mesa> mLib = new ArrayList<>();
+		for (Mesa mesa : listaMesas) {
+			if(mesa.estadoActual()=="Liberada") {
+				mLib.add(mesa);
+			}
+		}return mLib;
+	}
+	public ArrayList<Mesa> mesasDisponibles() {
+		ArrayList<Mesa> mLib = new ArrayList<>();
+		for (Mesa mesa : listaMesas) {
+				mLib.add(mesa);
+		}return mLib;
+	}
+	public ArrayList<Mesa> mesasReservadas(String fecha) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date date= null;
+		try {
+			date = format.parse(fecha);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		ArrayList<Mesa> mLibres = new ArrayList<>();
+		int nume=-1;
+		Mesa m;
+		for (Reserva mesa : listaReservas) {
+			 
+			if (date.equals(mesa.getFecha()))
+				nume = mesa.getMesa().getNroMesa();
+				m = getMesa(nume);
+				mLibres.add(m);
+		}return mLibres;
+	}
 }
-
