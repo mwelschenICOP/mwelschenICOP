@@ -1,7 +1,4 @@
 package Logica;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Mesa {
 	private Estado state;
@@ -9,10 +6,7 @@ public class Mesa {
 	private int nroMesa;
 	private int capacidad;
 	private double consumo;
-	private ArrayList<Reserva> listaReservas;
-	
-	private static Scanner input = new Scanner(System.in);
-	
+
 	public Mesa(int nroMesa,Estado state, int capacidad, double consumo) {
 		super();
 		this.nroMesa=nroMesa;
@@ -20,15 +14,12 @@ public class Mesa {
 		this.capacidad=capacidad;
 		this.consumo=consumo;
 	}
-	
 	public Mesa() {
 		super();
 		contador++;
 		this.nroMesa=contador;
 		this.state=new Liberada();
 	}
-	
-	
 	public Mesa( int capacidad, double consumo) {
 		super();
 		contador++;
@@ -36,17 +27,7 @@ public class Mesa {
 		this.state=new Liberada();
 		this.capacidad = capacidad;
 		this.consumo = consumo;
-		this.listaReservas = new ArrayList<Reserva>();
 	}
-
-	public ArrayList<Reserva> getListaReservas() {
-		return listaReservas;
-	}
-
-	public void setListaReservas(ArrayList<Reserva> listaReservas) {
-		this.listaReservas = listaReservas;
-	}
-
 	public Estado getState() {
 		return state;
 	}
@@ -71,7 +52,7 @@ public class Mesa {
 		return consumo;
 	}
 	public void setConsumo(double consumo) {
-		this.consumo = consumo;
+		this.consumo+=consumo;
 	}
 	public void liberar() {
 		this.state.liberar(this);
@@ -100,11 +81,6 @@ public class Mesa {
 		return est;
 	}
 	
-	public void reservaFutura(int nro, Date fecha, String nomape, int comen) {
-		Reserva reserv = new Reserva(nro, fecha, nomape, comen);
-		listaReservas.add(reserv);
-	}
-
 	@Override
 	public String toString() {
 		return "Mesa: "+ nroMesa +", Estado: " + estadoActual() +  ", Capacidad: " + capacidad + ", Consumo:" + consumo
@@ -113,9 +89,9 @@ public class Mesa {
 
 	public void setEstado(String string) {
 		this.estadoActual();
+	}
+	public void liberar(double cons) {
+		this.state.liberar(this, cons);;
 		
 	}
-
-	
-	
 }

@@ -6,5 +6,20 @@ public class Principal {
 		// TODO Auto-generated method stub
 
 	}
-
+/*
+ * @FunctionalInterface
+ * public interface ICalculadora{
+ * void.ejecutar();
+ * }
+ * 
+ * 
+ * ICalculadora calculadora =()-> sysout("");
+ * 
+ * calculadora.ejecutar();
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 }

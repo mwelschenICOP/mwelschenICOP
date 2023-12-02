@@ -1,16 +1,22 @@
 package Logica;
 
+import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 public class Ocupada implements Estado{
 	private Mesa mesa;
-	
+	private static Scanner input = new Scanner(System.in);
 	
 	@Override
 	public void liberar(Mesa mesa) {
+		System.out.println("Ingrese el consumo de la mesa: ");
+		int con=input.nextInt();
+		mesa.setConsumo(con);
 		String mensaje="La operacion fue realizada satisfactoriamente: "
 				+ "Mesa N° "+mesa.getNroMesa()+"\n"
 						+ "capacidad: "+mesa.getCapacidad();
+		System.out.println(mensaje);
 		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Liberada());
 	}
@@ -22,6 +28,7 @@ public class Ocupada implements Estado{
 				String mensaje="La operacion fue realizada satisfactoriamente: "
 						+ "Mesa N° "+mesa.getNroMesa()+"\n"
 								+ "capacidad: "+mesa.getCapacidad();
+				System.out.println(mensaje);
 				JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 				mesa.setEstado(new Liberada());
 			}	
@@ -40,5 +47,15 @@ public class Ocupada implements Estado{
 	@Override
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;	
+	}
+	@Override
+	public void liberar(Mesa mesa, double cons) {
+		mesa.setConsumo(cons);
+		String mensaje="La operacion fue realizada satisfactoriamente: "
+				+ "Mesa N° "+mesa.getNroMesa()+"\n"
+						+ "capacidad: "+mesa.getCapacidad();
+		System.out.println(mensaje);
+		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
+		mesa.setEstado(new Liberada());
 	}
 }

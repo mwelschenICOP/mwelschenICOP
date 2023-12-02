@@ -94,6 +94,15 @@ public class InterfazBaja extends JFrame {
 		JButton btnOcupar = new JButton("Ocupar");
 		btnOcupar.setBounds(66, 90, 77, 21);
 		contentPane.add(btnOcupar);
+		
+		JButton btnNewButton = new JButton("Salir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(66, 362, 85, 21);
+		contentPane.add(btnNewButton);
 		btnOcupar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

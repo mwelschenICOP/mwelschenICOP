@@ -30,7 +30,7 @@ public class MesaAD {
 			pst.setInt(1, mesa.getNroMesa());
 			pst.setString(2, mesa.estadoActual());
 			pst.setInt(3, mesa.getCapacidad());
-			pst.setDouble(4, mesa.getConsumo());
+			pst.setDouble(4, +mesa.getConsumo());
 			pst.setInt(5, id);
 			pst.execute();
 			return true;

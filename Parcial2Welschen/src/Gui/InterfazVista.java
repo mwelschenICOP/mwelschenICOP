@@ -26,8 +26,6 @@ public class InterfazVista extends JPanel {
 
 		repaint();
 	}
-		
-	
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.black);

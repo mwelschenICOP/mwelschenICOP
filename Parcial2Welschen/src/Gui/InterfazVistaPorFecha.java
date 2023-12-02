@@ -17,13 +17,8 @@ public class InterfazVistaPorFecha extends JPanel{
 	
 	public InterfazVistaPorFecha(Control control) {
 		this.control=control;
-	
-		
-		
 		repaint();
 	}
-		
-	
 	public void paint(Graphics g) {
 		super.paint(g);
 		

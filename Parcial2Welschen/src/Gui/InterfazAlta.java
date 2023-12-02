@@ -120,6 +120,15 @@ public class InterfazAlta extends JFrame {
 		txtnMesa.setBounds(84, 88, 110, 19);
 		contentPane.add(txtnMesa);
 		txtnMesa.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Salir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(109, 365, 85, 21);
+		contentPane.add(btnNewButton);
 		table.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent Mouse_evt) {
 				Point point=Mouse_evt.getPoint();

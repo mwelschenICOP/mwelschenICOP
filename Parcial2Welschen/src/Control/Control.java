@@ -45,6 +45,11 @@ public class Control {
 	public void setResto(Resto resto) {
 		this.resto = resto;
 	}
+	public void mostrarResto() {
+		for (Resto r : listResto) {
+			System.out.println("Para seleccionar el restó "+r.getNombre()+" ingrese el numero "+r.getId());
+		}
+	}
 	public void RellenarCombo(String tabla, String valor, JComboBox<String> combo) {
 		String sql = "SELECT * FROM "+ tabla;
 		try {
@@ -66,8 +71,21 @@ public class Control {
 		    	setResto(r);
 		    	this.resto.setListaMesas(mesaad.buscarMesaidResto(r.getId()));
 		    	this.resto.setListaReservas(reservaad.traerReservas(r.getId()));
+		    /*	MesaAD mesaad = new MesaAD();
+				resto.setListaMesas(mesaad.buscarMesaidResto(resto.getId()));
+		    	ReservaAD reservaad = new ReservaAD(mesaad);
+				resto.setListaReservas(reservaad.traerReservas(resto.getId()));*/
 		    }
 		}
+	}
+	public Resto setearResto(int num) {
+		for (Resto r : listResto) {
+		    if (num==r.getId()) {
+		    	setResto(r);
+		    }
+		}
+		return resto;
+		
 	}
 	public List<Mesa> verDisponibles(int cant, String fecha) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -134,7 +152,7 @@ public class Control {
 	}
 	public void liberarMesa(double cons, int nMesa) {
 		Mesa m =resto.getMesa(nMesa);
-		m.liberar();
+		m.liberar(cons);
 		mesaad.cambiarEstado(cons, nMesa, m.estadoActual());
 		
 	}
@@ -167,6 +185,45 @@ public class Control {
 		 mesas.add(mesa); 
 			}
 		return mesas;
+	}
+	public ArrayList<Mesa> reservadaPorFecha(String fecha){
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = null;
+		ArrayList<Mesa> mesasReser = new ArrayList<>();
+		if (resto.getListaReservas().size()==0) {
+			for(Mesa mesa : resto.getListaMesas())
+				System.out.println("Mesa " + mesa.getNroMesa() + " libre - Capacidad: " + mesa.getCapacidad());
+		}
+		else{
+			for(Mesa mes : resto.getListaMesas()) {
+
+				for(Reserva r : resto.getListaReservas()) {
+					try {
+						date = formatoFecha.parse(fecha);
+					} catch (ParseException e) {
+
+						e.printStackTrace();
+					}
+					if(r.getFecha().equals(date) && r.getMesa().getNroMesa()==mes.getNroMesa()) {
+						mesasReser.add(mes);
+					}
+				}
+			}
+		}return mesasReser;
+	}
+	public ArrayList<Mesa> librePorFecha(String fecha){
+		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = null;
+		ArrayList<Mesa> mesasDispo = new ArrayList<>();
+		ArrayList<Mesa> mesasReser = reservadaPorFecha(fecha);
+		for(Mesa mesa : resto.getListaMesas()) {
+			for (Mesa rese : mesasReser) {
+				if(!mesasReser.contains(mesa)) {
+					if(!mesasDispo.contains(mesa))
+						mesasDispo.add(mesa);
+				}
+			}
+		}return mesasDispo;
 	}
 	public ArrayList<Mesa> verReservadasXFecha(String fecha) {
 		ArrayList<Mesa> mDisp =resto.mesasReservadas(fecha);

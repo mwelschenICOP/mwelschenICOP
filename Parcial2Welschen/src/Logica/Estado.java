@@ -10,4 +10,6 @@ public interface Estado {
 	
 	public void setMesa(Mesa mesa);
 
+	public void liberar(Mesa mesa, double cons);
+
 }

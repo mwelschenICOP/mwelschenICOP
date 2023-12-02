@@ -46,7 +46,7 @@ public class InterfazReserva extends JFrame {
 	public InterfazReserva(Control control) {
 		this.control=control;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 616, 529);
+		setBounds(100, 100, 616, 505);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -153,17 +153,16 @@ public class InterfazReserva extends JFrame {
 				}else {
 				control.reservarMesa(cant, fecha, nombre, mesa);
 				modeloTabla.removeRow(table.getSelectedRow());
-				String mensaje="La operacion fe realizada satisfactoriamente: \n"
-						+ "Fecha: "+fecha +"\n"
-								+ "A nombre de: "+nombre+"\n"
-										+ "Mesa N° "+mesa+"\n"
-												+ "cantidad de comensales: "+cant;
-				JOptionPane.showMessageDialog(null, mensaje, "Reserva", JOptionPane.INFORMATION_MESSAGE);
-				
+				guardarReserva();
 				((DefaultTableModel) table.getModel()).setRowCount(0);
+				txtNombre.setText("");
+				txtNroMesa.setText("");
+				txtCant.setText("");
 				}
 			}
 		});
+		
+		
 		btnReserv.setBounds(119, 296, 113, 21);
 		contentPane.add(btnReserv);
 		
@@ -216,5 +215,26 @@ public class InterfazReserva extends JFrame {
 		txtNroMesa.setBounds(112, 253, 120, 19);
 		contentPane.add(txtNroMesa);
 		txtNroMesa.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Salir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(120, 426, 112, 21);
+		contentPane.add(btnNewButton);
 	}
+	public void guardarReserva() {
+		  int resultado = JOptionPane.showConfirmDialog(null, 
+		    "Reserva guardada. ¿Desea realizar otra reserva?", 
+		    "Confirmación", 
+		    JOptionPane.YES_NO_OPTION);
+
+		  if(resultado == JOptionPane.YES_OPTION) {
+		  }
+		  else {
+			  dispose();
+		  }
+		}
 }

@@ -8,6 +8,7 @@ public class Liberada implements Estado{
 	@Override
 	public void liberar(Mesa mesa) {
 		String mensaje="La mesa ya se encuentra liberada ";
+		System.out.println(mensaje);
 		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -16,6 +17,7 @@ public class Liberada implements Estado{
 		String mensaje="La operacion fue realizada satisfactoriamente: "
 				+ "Mesa N° "+mesa.getNroMesa()+"\n"
 						+ "capacidad: "+mesa.getCapacidad();
+		System.out.println(mensaje);
 		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Ocupada());
 	}
@@ -25,7 +27,8 @@ public class Liberada implements Estado{
 		String mensaje="La operacion fue realizada satisfactoriamente: "
 								+ "Mesa N° "+mesa.getNroMesa()+"\n"
 										+ "capacidad: "+mesa.getCapacidad();
-		JOptionPane.showMessageDialog(null, mensaje, "Estado", JOptionPane.INFORMATION_MESSAGE);
+		System.out.println(mensaje);
+		JOptionPane.showMessageDialog(null, mensaje, "Reserva", JOptionPane.INFORMATION_MESSAGE);
 		mesa.setEstado(new Reservada());
 	}
 
@@ -33,6 +36,8 @@ public class Liberada implements Estado{
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-	
 
+	@Override
+	public void liberar(Mesa mesa, double cons) {
+	}
 }

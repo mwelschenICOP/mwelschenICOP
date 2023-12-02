@@ -52,28 +52,34 @@ public class Principal extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InterfazReserva res = new InterfazReserva(control);
+				res.setUndecorated(true);
+				res.setResizable(false);
 				res.setVisible(true);
 			}
 		});
 		JMenu mnNewMenu_1 = new JMenu("Gestión");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Alta mesa");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Liberar mesa");
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					    InterfazAlta alta = new InterfazAlta(control); 
+					    alta.setUndecorated(true);
+					    alta.setResizable(false);
 					    alta.setVisible(true);
 			}
 		});
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Baja mesa");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Ocupar mesa");
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					    InterfazBaja baja = new InterfazBaja(control); 
+					    InterfazBaja baja = new InterfazBaja(control);
+					    baja.setUndecorated(true);
+					    baja.setResizable(false);
 					    baja.setVisible(true);
 			}
 		});
@@ -86,15 +92,12 @@ public class Principal extends JFrame implements ActionListener{
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame jf = new JFrame("Vista Actual");
-				jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				InterfazVista act= new InterfazVista(control);
-				act.setBackground(Color.white);
-				jf.add(act);
-				jf.setSize(600,700);
-			    jf.setPreferredSize(new Dimension(600,700));
-				jf.setVisible(true);	
-				jf.pack();}
+				VistaActual act= new VistaActual(control);
+				
+				act.setResizable(false);
+				act.pack();
+			    act.setVisible(true);
+				}
 		});
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Vista por fecha");
 		mnNewMenu_2.add(mntmNewMenuItem_4);
@@ -102,15 +105,10 @@ public class Principal extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		
-				JFrame jf1 = new JFrame("Vista por fecha");
-				jf1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				InterfazVistaPorFecha act1= new InterfazVistaPorFecha(control);
-				act1.setBackground(Color.white);
-				jf1.add(act1);
-				jf1.setSize(600,700);
-			    jf1.setPreferredSize(new Dimension(600,700));
-				jf1.setVisible(true);	
-				jf1.pack();
+				 VistaPorFecha act= new VistaPorFecha(control);
+					act.setResizable(false);
+					//act.pack();
+				    act.setVisible(true);
 			}
 		});
 		JMenuItem miAcerca = new JMenuItem("Acerca de");
